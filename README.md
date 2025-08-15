@@ -18,12 +18,6 @@ demonstrating our model’s effectiveness in detecting false news articles in Vi
 
 To get started with the project, you can follow these steps:
 
-To use this project, you'll need to clone the repository. You can do this using Git:
-
-```bash
-git clone https://github.com/Akirahai/ECG_VISHC_Project.git
-```
-
 Next, make sure to install the necessary dependencies. You can create a Python virtual environment and install the requirements:
 
 ```bash
