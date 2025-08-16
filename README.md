@@ -1,3 +1,4 @@
+MÔ TẢ ĐỒ ÁN: 
 Vietnamese Fake News Detection
 Tokenization from Pre-trained Models + Word Embeddings BiLSTM
 
