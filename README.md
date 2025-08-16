@@ -1,58 +1,64 @@
-# Vietnamese Fake News Detection Based on Tokenization from Pre-trained Models and Word Embeddings BiLSTM Model
+Vietnamese Fake News Detection
+Tokenization from Pre-trained Models + Word Embeddings BiLSTM
+
+Phát hiện tin giả trên mạng xã hội là nhiệm vụ quan trọng nhằm đảm bảo tính toàn vẹn của thông tin. Trong nghiên cứu này, chúng tôi đề xuất một phương pháp phát hiện tin giả tiếng Việt kết hợp tokenization từ mô hình tiền huấn luyện (Bartpho) và word embeddings với BiLSTM 2 lớp.
+
+Mô hình được huấn luyện và đánh giá trên bộ dữ liệu ReINTEL 2020, cho kết quả:
+
+🎯 Accuracy: 95.83%
+
+📊 F1-score: 86.84%
+
+Kết quả cho thấy mô hình có khả năng phát hiện tin giả tiếng Việt hiệu quả và ổn định.
+
+📑 Mục lục
+
+Cài đặt
+
+Nguồn dữ liệu
+
+Các chức năng đã triển khai
+
+Đóng góp
+
+⚙️ Cài đặt
+
+Clone dự án và cài đặt môi trường:
+
+git clone https://github.com/TranPhucBinhh/LLMPhatHienTinGia.git
+cd LLMPhatHienTinGia
 
 
-Detecting fake news on social media is a critical task to ensure information integrity. While there are several 
-studies about fake news detection on English information, Vietnamese fake news detection remains limited.
+Tạo virtual environment và cài đặt dependencies:
 
-In this research, we propose an approach for Vietnamese fake news using **pre-trained models forward tokenization** combined with word embedding inside 2 layers **Bidirectional Long Short Term Memory Network**.
-Our proposed model is trained and evaluated on the dataset of Reliable Intelligence Identification on Vietnamese SNSs (ReINTEL), which contains nearly 10000 examples with labels.
-Our experiments on the dataset demonstrate promising results with an accuracy of 0.9583 and an F1 score of 0.8684 using word tokenization from the Bartpho model, 
-demonstrating our model’s effectiveness in detecting false news articles in Vietnamese.
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Data source](#datasource)
-- [Contributing](#contributing)
-## Installation
-
-To get started with the project, you can follow these steps:
-
-Next, make sure to install the necessary dependencies. You can create a Python virtual environment and install the requirements:
-
-```bash
-cd Massp_Fake-news-detection
+python -m venv venv
+source venv/bin/activate   # hoặc .\venv\Scripts\activate trên Windows
 pip install -r requirements.txt
-```
 
-## Data Source
+📂 Nguồn dữ liệu
 
+Chúng tôi sử dụng ReINTEL 2020 dataset (Lê et al.), được thu thập trong 2 tháng (8–10/2020), gồm 9713 mẫu từ:
 
+Mạng xã hội (nhóm tin tức, KOLs).
 
-For our research on Vietnamese fake news detection, we utilized the [ReINTEL 2020](https://aclanthology.org/2020.vlsp-1.16.pdf) dataset,
-which was collected for a period of two months, from August to October 2020.
-The dataset comprises a total of 9713 items, including both news articles and social media posts. These examples were collected from various sources, primarily from social media platforms (SNSs) and Vietnamese newspapers. The social media posts were retrieved
-from news groups and key opinion leaders (KOLs), while the newspaper articles reported on
-deleted fake news posts to ensure their inclusion.
+Báo chí Việt Nam (bài báo về các tin giả đã bị gỡ).
 
-The data covers a wide range of domains, such as entertainment, sports, finance, healthcare,
-and the Covid-19 pandemic. During the data collection period, Vietnam experienced a significant surge in Covid-19 cases, leading to an ’infodemic’ with the rapid spread of misleading
-information, particularly on social media platforms. This time frame, coupled with the
-diversity of domains covered, makes the dataset highly suitable for training and evaluating
-our proposed fake news detection model.
+Bộ dữ liệu bao phủ nhiều lĩnh vực: giải trí, thể thao, tài chính, y tế và đặc biệt là Covid-19 infodemic
+Đây là tập dữ liệu công khai, được đánh giá cân bằng lớp và phù hợp để huấn luyện mô hình phát hiện tin giả.
 
-It is important to note that the [ReINTEL 2020](https://aclanthology.org/2020.vlsp-1.16.pdf) dataset by Le et al. is publicly available and was not
-collected directly by us. However, we selected it as the basis for our research due to its
-comprehensive coverage, balanced class distribution, and real-world relevance.
+🚀 Các chức năng nhóm đã thực hiện và triển khai
 
-## Contributing
+✔️ Tiền xử lý dữ liệu văn bản tiếng Việt (chuẩn hóa, tokenization với Bartpho).
+✔️ Word embeddings huấn luyện sẵn cho tiếng Việt.
+✔️ Mô hình BiLSTM 2 lớp xử lý ngữ cảnh hai chiều.
+✔️ Huấn luyện và đánh giá trên tập ReINTEL 2020.
+✔️ Độ chính xác cao: 95.83% Accuracy, 86.84% F1-score.
+✔️ Script huấn luyện + đánh giá có thể chạy lại dễ dàng.
 
-Our proposed model achieved an impressive accuracy of 95.83% on the test set for classifying Vietnamese news as real or fake. Surpassing 90% accuracy demonstrates that deep
-learning approaches like LSTMs are highly effective for this task when provided with sufficient training data.
+🤝 Đóng góp
 
-Several factors contributed to the high accuracy:
-* The bidirectional LSTM architecture was able to build robust sequential representations of the tokenized articles by processing both past and future context. 
-* Pre-training the BERT word embeddings on a large corpus enabled the model to leverage semantic and syntactic representations tailored for the Vietnamese language.
-* The large labeled dataset used for training was critical for the model to learn the nuanced patterns that distinguish fabricated from factual stories.
-
-
+Mô hình của chúng tôi chứng minh rằng các phương pháp Deep Learning (LSTM, BiLSTM) kết hợp với ngôn ngữ tiền huấn luyện (BERT/Bartpho) có thể đạt độ chính xác vượt trội trong bài toán phát hiện tin giả tiếng Việt.
+Một số yếu tố quan trọng dẫn đến kết quả cao:
+BiLSTM xử lý được ngữ cảnh cả trước và sau.
+Embedding từ Bartpho mang tính ngữ nghĩa và cú pháp phù hợp cho tiếng Việt.
+Bộ dữ liệu ReINTEL lớn và đa dạng, giúp mô hình học được nhiều mẫu tin giả phức tạp.
